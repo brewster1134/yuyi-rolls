@@ -5,7 +5,7 @@ class Ruby < Yuyi::Roll
 
   dependencies :rbenv
 
-  available_options(
+  options(
     :versions => {
       :description => 'An array of ruby versions you would like to install',
       :example => [AVAIL_VERSIONS.last],

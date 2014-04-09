@@ -1,7 +1,7 @@
 require 'fileutils'
 
 class Xcode < Yuyi::Roll
-  available_options(
+  options(
     :apple_id => {
       :description => 'Your Apple ID username',
       :example => 'john@mac.com',
