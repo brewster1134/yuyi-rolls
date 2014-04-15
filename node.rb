@@ -14,6 +14,6 @@ class Node < Yuyi::Roll
   end
 
   installed? do
-    `brew list` =~ /node/
+    run('brew list') =~ /node/
   end
 end

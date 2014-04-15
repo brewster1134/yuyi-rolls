@@ -14,6 +14,6 @@ class Maven < Yuyi::Roll
   end
 
   installed? do
-    `brew list` =~ /maven/
+    run('brew list') =~ /maven/
   end
 end

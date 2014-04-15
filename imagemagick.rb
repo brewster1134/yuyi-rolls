@@ -14,6 +14,6 @@ class Imagemagick < Yuyi::Roll
   end
 
   installed? do
-    `brew list` =~ /imagemagick/
+    run('brew list') =~ /imagemagick/
   end
 end

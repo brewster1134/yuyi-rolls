@@ -14,6 +14,6 @@ class HomebrewCaskVersions < Yuyi::Roll
   end
 
   installed? do
-    `brew tap` =~ /caskroom\/versions/
+    run('brew tap') =~ /caskroom\/versions/
   end
 end

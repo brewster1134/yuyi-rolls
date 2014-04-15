@@ -17,9 +17,8 @@ class Xcode < Yuyi::Roll
   install do
     # https://gist.github.com/trinitronx/6237049
 
-    install_dir = "#{ENV['TMPDIR']}Xcode"
-    FileUtils.rm_rf install_dir
-    run "git clone https://gist.github.com/6237049.git #{install_dir}"
+    install_dir = Dir.mktmpdir
+    run "git clone https://gist.github.com/10699106.git #{install_dir}"
     script_file = File.join(install_dir, 'Install_XCode.applescript')
 
     # Replace the credentials in the script
@@ -39,9 +38,9 @@ class Xcode < Yuyi::Roll
     FileUtils.rm_rf '/Applications/Xcode.app'
   end
 
-  update { install }
+  update { say 'Updating is not yet supported with Yuyi.  Please update Xcode through the App Store.' }
 
   installed? do
-    command? 'xcode-select'
+    command? 'xcode-select -v'
   end
 end

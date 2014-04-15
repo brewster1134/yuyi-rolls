@@ -12,6 +12,6 @@ class Alfred < Yuyi::Roll
   update { install }
 
   installed? do
-    `brew cask list` =~ /alfred/
+    run('brew cask list') =~ /alfred/
   end
 end

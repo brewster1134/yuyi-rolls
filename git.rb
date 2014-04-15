@@ -14,6 +14,6 @@ class Git < Yuyi::Roll
   end
 
   installed? do
-    `brew list` =~ /git/
+    run('brew list') =~ /git/
   end
 end

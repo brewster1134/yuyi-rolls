@@ -12,6 +12,6 @@ class GoogleChrome < Yuyi::Roll
   update { install }
 
   installed? do
-    run 'brew cask list' =~ /google-chrome/
+    run('brew cask list') =~ /google-chrome/
   end
 end

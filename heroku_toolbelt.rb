@@ -13,6 +13,6 @@ class HerokuToolbelt < Yuyi::Roll
   update { install }
 
   installed? do
-    `brew cask list` =~ /heroku-toolbelt/
+    run('brew cask list') =~ /heroku-toolbelt/
   end
 end

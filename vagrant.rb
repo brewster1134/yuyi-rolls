@@ -12,6 +12,6 @@ class Vagrant < Yuyi::Roll
   update { install }
 
   installed? do
-    `brew cask list` =~ /vagrant/
+    run('brew cask list') =~ /vagrant/
   end
 end

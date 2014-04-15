@@ -14,6 +14,6 @@ class Mongodb < Yuyi::Roll
   end
 
   installed? do
-    `brew list` =~ /mongodb/
+    run('brew list') =~ /mongodb/
   end
 end

@@ -30,6 +30,6 @@ class Rbenv < Yuyi::Roll
   end
 
   installed? do
-    command?('rbenv') && `brew list` =~ /rbenv/ && `brew list` =~ /ruby-build/
+    command?('rbenv') && run('brew list') =~ /rbenv/ && run('brew list') =~ /ruby-build/
   end
 end

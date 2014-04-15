@@ -12,6 +12,6 @@ class HipChat < Yuyi::Roll
   update { install }
 
   installed? do
-    `brew cask list` =~ /hipchat/
+    run('brew cask list') =~ /hipchat/
   end
 end

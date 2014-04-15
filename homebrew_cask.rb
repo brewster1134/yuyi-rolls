@@ -4,6 +4,10 @@ class HomebrewCask < Yuyi::Roll
   install do
     run 'brew tap phinze/homebrew-cask'
     run 'brew install brew-cask'
+
+    if on_the_menu? :alfred
+      run 'brew cask alfred'
+    end
   end
 
   uninstall do
@@ -16,6 +20,6 @@ class HomebrewCask < Yuyi::Roll
   end
 
   installed? do
-    !`brew cask`.empty?
+    command? 'brew cask'
   end
 end
