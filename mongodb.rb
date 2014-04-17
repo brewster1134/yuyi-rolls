@@ -9,7 +9,7 @@ class Mongodb < Yuyi::Roll
     run 'brew uninstall mongodb'
   end
 
-  update do
+  upgrade do
     run 'brew upgrade mongodb'
   end
 

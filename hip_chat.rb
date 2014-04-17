@@ -9,7 +9,7 @@ class HipChat < Yuyi::Roll
     run 'brew cask uninstall hipchat'
   end
 
-  update { install }
+  upgrade { install }
 
   installed? do
     run('brew cask list') =~ /hipchat/

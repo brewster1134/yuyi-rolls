@@ -9,7 +9,7 @@ class GoogleChrome < Yuyi::Roll
     run 'brew cask uninstall google-chrome'
   end
 
-  update { install }
+  upgrade { install }
 
   installed? do
     run('brew cask list') =~ /google-chrome/

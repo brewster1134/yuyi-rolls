@@ -9,7 +9,7 @@ class Maven < Yuyi::Roll
     run 'brew uninstall maven'
   end
 
-  update do
+  upgrade do
     run 'brew upgrade maven'
   end
 

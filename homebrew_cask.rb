@@ -15,8 +15,8 @@ class HomebrewCask < Yuyi::Roll
     run 'brew uninstall brew-cask'
   end
 
-  update do
-    say 'Updated via Homebrew', :type => :success, :indent => 6
+  upgrade do
+    say 'Upgraded via Homebrew', :type => :success, :indent => 6
   end
 
   installed? do

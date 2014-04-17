@@ -25,7 +25,7 @@ class Rbenv < Yuyi::Roll
     end
   end
 
-  update do
+  upgrade do
     run 'brew upgrade rbenv ruby-build'
   end
 

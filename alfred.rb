@@ -9,7 +9,7 @@ class Alfred < Yuyi::Roll
     run 'brew cask uninstall alfred'
   end
 
-  update { install }
+  upgrade { install }
 
   installed? do
     run('brew cask list') =~ /alfred/

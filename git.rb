@@ -9,7 +9,7 @@ class Git < Yuyi::Roll
     run 'brew uninstall git'
   end
 
-  update do
+  upgrade do
     run 'brew upgrade git'
   end
 

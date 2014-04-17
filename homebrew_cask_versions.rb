@@ -9,8 +9,8 @@ class HomebrewCaskVersions < Yuyi::Roll
     run 'brew untap caskroom/versions'
   end
 
-  update do
-    say 'Updated via Homebrew', :type => :success, :indent => 6
+  upgrade do
+    say 'Upgraded via Homebrew', :type => :success, :indent => 6
   end
 
   installed? do

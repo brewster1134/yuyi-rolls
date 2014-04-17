@@ -25,7 +25,7 @@ class SublimeText < Yuyi::Roll
     end
   end
 
-  update { install }
+  upgrade { install }
 
   installed? do
     if options[:version] != 2

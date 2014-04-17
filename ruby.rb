@@ -27,7 +27,7 @@ class Ruby < Yuyi::Roll
     end
   end
 
-  update do
+  upgrade do
     # Install the latest version of ruby if no version are specified in the menu
     # and the latest version is not already installed
     if options[:versions] && options[:versions].empty? && !INSTALLED_VERSIONS.include?(AVAIL_VERSIONS.last)

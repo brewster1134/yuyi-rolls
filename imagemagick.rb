@@ -9,8 +9,8 @@ class Imagemagick < Yuyi::Roll
     run 'brew uninstall imagemagick'
   end
 
-  update do
-    run 'brew update imagemagick'
+  upgrade do
+    run 'brew upgrade imagemagick'
   end
 
   installed? do
