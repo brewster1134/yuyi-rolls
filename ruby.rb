@@ -1,15 +1,17 @@
 class Ruby < Yuyi::Roll
-  RUBY_VERSION_REGEX = /([0-9]+\.[0-9]+\.[0-9]+-p[0-9]+)/
-  AVAIL_VERSIONS = `rbenv install -l`.scan(RUBY_VERSION_REGEX).flatten
-  INSTALLED_VERSIONS = `rbenv versions`.scan(RUBY_VERSION_REGEX).flatten
+  C_RUBY_VERSION_REGEX = /^\s+((?:[0-9]+\.?){3}+(?:$|-p[0-9]+))/
+  ALL_RUBY_VERSION_REGEX = /^[\s*]{2}(.*[0-9])$/
+  ALL_AVAIL_VERSIONS = `rbenv install -l`.scan(ALL_RUBY_VERSION_REGEX).flatten
+  AVAIL_C_VERSIONS = `rbenv install -l`.scan(C_RUBY_VERSION_REGEX).flatten
+  INSTALLED_VERSIONS = `rbenv versions`.scan(ALL_RUBY_VERSION_REGEX).flatten
 
   dependencies :rbenv
 
   options(
     :versions => {
-      :description => 'An array of ruby versions you would like to install',
-      :example => [AVAIL_VERSIONS.last],
-      :default => AVAIL_VERSIONS.last
+      :description => 'An array of ruby versions you would like to install.',
+      :example => (ALL_AVAIL_VERSIONS.unshift '# All available versions...').join("\n"),
+      :default => [AVAIL_C_VERSIONS.last]
     }
   )
 
@@ -28,11 +30,11 @@ class Ruby < Yuyi::Roll
   end
 
   upgrade do
-    # Install the latest version of ruby if no version are specified in the menu
+    # Install the latest version of c ruby if no version are specified in the menu
     # and the latest version is not already installed
     if options[:versions] && options[:versions].empty? && !INSTALLED_VERSIONS.include?(AVAIL_VERSIONS.last)
-      run "rbenv install #{AVAIL_VERSIONS.last}"
-      run "rbenv global #{AVAIL_VERSIONS.last}"
+      run "rbenv install #{AVAIL_C_VERSIONS.last}"
+      run "rbenv global #{AVAIL_C_VERSIONS.last}"
     end
   end
 
@@ -44,9 +46,11 @@ class Ruby < Yuyi::Roll
   #
   def versions
     # Collect versions from options and make sure they are available through rbenv
-    versions = (options[:versions] || []).select{ |v| AVAIL_VERSIONS.include? v }
+    vers = options[:versions].select{ |v| ALL_AVAIL_VERSIONS.include? v }
 
     # Install the last available version if none specified were available
-    versions << AVAIL_VERSIONS.last if versions.empty?
+    vers << AVAIL_C_VERSIONS.last if vers.empty?
+
+    return vers
   end
 end
