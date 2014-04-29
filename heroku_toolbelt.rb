@@ -3,7 +3,8 @@ class HerokuToolbelt < Yuyi::Roll
 
   install do
     run 'brew cask install heroku-toolbelt'
-    run 'heroku login'
+    # TODO: need to run post install
+    # run 'heroku login'
   end
 
   uninstall do

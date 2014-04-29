@@ -16,7 +16,7 @@ class HomebrewCask < Yuyi::Roll
   end
 
   upgrade do
-    say 'Upgraded via Homebrew', :type => :success, :indent => 6
+    say 'Upgraded via Homebrew', :type => :success, :indent => 4
   end
 
   installed? do

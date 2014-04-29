@@ -1,25 +1,22 @@
 class Ruby < Yuyi::Roll
-  C_RUBY_VERSION_REGEX = /^\s+((?:[0-9]+\.?){3}+(?:$|-p[0-9]+))/
-  ALL_RUBY_VERSION_REGEX = /^[\s*]{2}(.*[0-9])$/
-  ALL_AVAIL_VERSIONS = `rbenv install -l`.scan(ALL_RUBY_VERSION_REGEX).flatten
-  AVAIL_C_VERSIONS = `rbenv install -l`.scan(C_RUBY_VERSION_REGEX).flatten
-  INSTALLED_VERSIONS = `rbenv versions`.scan(ALL_RUBY_VERSION_REGEX).flatten
+  RBENV_RUBY_VERSION_REGEX = /^[\s*]{2}(.*)$/
 
   dependencies :rbenv
 
   options(
     :versions => {
-      :description => 'An array of ruby versions you would like to install.',
-      :example => (ALL_AVAIL_VERSIONS.unshift '# All available versions...').join("\n"),
-      :default => [AVAIL_C_VERSIONS.last]
+      :description => 'An array of ruby versions you would like to install (in order of oldest to newest by version).',
+      :example => [ '2.1.1' ],
+      :required => true
     }
   )
 
   install do
     versions.each do |v|
-      run "rbenv install #{v}" unless INSTALLED_VERSIONS.include? v
+      run "rbenv install #{v}" unless installed_versions.include? v
     end
 
+    # set the last version to be the global version
     run "rbenv global #{versions.last}"
   end
 
@@ -30,27 +27,24 @@ class Ruby < Yuyi::Roll
   end
 
   upgrade do
-    # Install the latest version of c ruby if no version are specified in the menu
-    # and the latest version is not already installed
-    if options[:versions] && options[:versions].empty? && !INSTALLED_VERSIONS.include?(AVAIL_VERSIONS.last)
-      run "rbenv install #{AVAIL_C_VERSIONS.last}"
-      run "rbenv global #{AVAIL_C_VERSIONS.last}"
-    end
+    install
   end
 
   installed? do
-    (options[:versions] || []).all?{ |v| INSTALLED_VERSIONS.include? v }
+    (options[:versions] || []).all?{ |v| installed_versions.include? v }
   end
 
   # Roll methods
   #
+  def available_versions
+    @available_versions ||= `rbenv install -l`.scan(RBENV_RUBY_VERSION_REGEX).flatten
+  end
+
+  def installed_versions
+    @installed_versions ||= `rbenv versions`.scan(RBENV_RUBY_VERSION_REGEX).flatten
+  end
+
   def versions
-    # Collect versions from options and make sure they are available through rbenv
-    vers = options[:versions].select{ |v| ALL_AVAIL_VERSIONS.include? v }
-
-    # Install the last available version if none specified were available
-    vers << AVAIL_C_VERSIONS.last if vers.empty?
-
-    return vers
+    @versions ||= options[:versions].select{ |v| available_versions.include? v }
   end
 end

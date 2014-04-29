@@ -38,7 +38,7 @@ class Xcode < Yuyi::Roll
     FileUtils.rm_rf '/Applications/Xcode.app'
   end
 
-  upgrade { say 'Upgrading is not yet supported with Yuyi.  Please upgrade Xcode through the App Store.' }
+  upgrade { say 'Upgrading Xcode is not yet supported with Yuyi.  Please upgrade Xcode through the App Store.' }
 
   installed? do
     command? 'xcode-select -v'
