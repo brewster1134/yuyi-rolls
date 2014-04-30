@@ -31,17 +31,21 @@ class Ruby < Yuyi::Roll
   end
 
   installed? do
-    (options[:versions] || []).all?{ |v| installed_versions.include? v }
+    begin installed_versions
+      options[:versions].all?{ |v| installed_versions.include? v }
+    rescue
+      false
+    end
   end
 
   # Roll methods
   #
   def available_versions
-    @available_versions ||= `rbenv install -l`.scan(RBENV_RUBY_VERSION_REGEX).flatten
+    @available_versions ||= run('rbenv install -l').scan(RBENV_RUBY_VERSION_REGEX).flatten
   end
 
   def installed_versions
-    @installed_versions ||= `rbenv versions`.scan(RBENV_RUBY_VERSION_REGEX).flatten
+    @installed_versions ||= run('rbenv versions').scan(RBENV_RUBY_VERSION_REGEX).flatten
   end
 
   def versions
