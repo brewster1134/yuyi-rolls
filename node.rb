@@ -10,7 +10,7 @@ class Node < Yuyi::Roll
   end
 
   upgrade do
-    run 'brew upgrade maven'
+    run 'brew upgrade node'
   end
 
   installed? do

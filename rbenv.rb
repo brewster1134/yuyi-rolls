@@ -3,7 +3,7 @@ class Rbenv < Yuyi::Roll
 
   install do
     # Remove RVM
-    run 'rvm implode' if command? 'rvm'
+    run 'rvm implode' if command? 'rvm -v'
 
     # Install
     run 'brew install rbenv ruby-build'
