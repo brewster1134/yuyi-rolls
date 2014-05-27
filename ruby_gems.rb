@@ -15,3 +15,6 @@ class RubyGems < Yuyi::Roll
     command? 'gem -v'
   end
 end
+
+# TODO:
+# .gemrc

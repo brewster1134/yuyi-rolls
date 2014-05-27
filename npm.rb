@@ -2,7 +2,7 @@ class Npm < Yuyi::Roll
   dependencies :node
 
   install do
-    unless command? 'npm'
+    unless command? 'npm -v'
       run 'curl https://npmjs.org/install.sh | sh'
     end
   end

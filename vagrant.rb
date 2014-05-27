@@ -15,3 +15,5 @@ class Vagrant < Yuyi::Roll
     run('brew cask list') =~ /vagrant/
   end
 end
+
+# TODO: support installing older versions
