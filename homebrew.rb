@@ -1,17 +1,31 @@
 class Homebrew < Yuyi::Roll
+  dependencies :xcode
+
   install do
     run 'ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"'
   end
 
   uninstall do
-    run 'sh "$(curl -fsSL https://gist.github.com/mxcl/1173223/raw/a833ba44e7be8428d877e58640720ff43c59dbad/uninstall_homebrew.sh)"'
+    run `cd \`brew --prefix\``
+    run `git checkout master`
+    run `git ls-files -z | pbcopy`
+    run `rm -rf Cellar`
+    run `bin/brew prune`
+    run `pbpaste | xargs -0 rm`
+    run `rm -r Library/Homebrew Library/Aliases Library/Formula Library/Contributions`
+    run `test -d Library/LinkedKegs && rm -r Library/LinkedKegs`
+    run `rmdir -p bin Library share/man/man1 2> /dev/null`
+    run `rm -rf .git`
+    run `rm -rf ~/Library/Caches/Homebrew`
+    run `rm -rf ~/Library/Logs/Homebrew`
+    run `rm -rf /Library/Caches/Homebrew: No such file or directory`
   end
 
   upgrade do
-    puts run 'date'
     pwd = Dir.pwd
     Dir.chdir '/usr/local/Library/Homebrew'
-    run 'git pull origin master && brew update'
+    run 'git pull origin master -q'
+    run 'brew update'
     Dir.chdir pwd
   end
 

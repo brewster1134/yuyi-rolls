@@ -1,46 +1,35 @@
 require 'fileutils'
 
 class Xcode < Yuyi::Roll
-  options(
-    :apple_id => {
-      :description => 'Your Apple ID username',
-      :example => 'john@mac.com',
-      :required => true
-    },
-    :apple_password => {
-      :description => 'Your Apple ID password',
-      :example => 'foobar123',
-      :required => true
-    }
-  )
+  pre_install do
+    if !installed?
+      install
+    else
+      say 'Make sure XCode command line tools are installed.', :type => :warn
+      say ' * Install xcode through the App Store', :type => :warn
+      say ' * Install the command line tools through XCode\'s Preferences > Downloads', :type => :warn
+    end
+    ask 'Press any key to continue once the xcode command line tools are installed', :type => :warn
+  end
 
   install do
-    # https://gist.github.com/trinitronx/6237049
-
-    install_dir = Dir.mktmpdir
-    run "git clone https://gist.github.com/10699106.git #{install_dir}"
-    script_file = File.join(install_dir, 'Install_XCode.applescript')
-
-    # Replace the credentials in the script
-    script = File.read script_file
-    script.gsub! /YOUR APPLE ID HERE/, options[:apple_id]
-    script.gsub! /YOUR PASSWORD HERE/, options[:apple_password]
-
-    # Re-write the file
-    File.open(script_file, 'w') { |f| f.write script }
-
-    # Run the script
-    Dir.chdir install_dir
-    run 'osascript Install_XCode.applescript'
+    if osx_version >= 10.9
+      run '/usr/bin/sudo /usr/bin/xcode-select --install'
+    end
   end
 
   uninstall do
     FileUtils.rm_rf '/Applications/Xcode.app'
   end
 
-  upgrade { say 'Upgrading Xcode is not yet supported with Yuyi.  Please upgrade Xcode through the App Store.' }
+  upgrade do
+    say 'Upgrading Xcode is not yet supported with Yuyi.  Please upgrade Xcode through the App Store.'
+  end
 
   installed? do
-    command? 'xcode-select -v'
+    return false unless osx_version >= 10.9
+
+    developer_dir = run '/usr/bin/xcode-select -print-path'
+    !developer_dir.empty? && File.exist?("#{developer_dir}/usr/bin/git")
   end
 end
