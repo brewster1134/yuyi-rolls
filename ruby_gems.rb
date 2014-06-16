@@ -26,4 +26,10 @@ class RubyGems < Yuyi::Roll
   installed? do
     command? 'gem -v'
   end
+
+  post_install do
+    # Prompts to enter rubygems credentials, but will fail because there is no gem to publish
+    # TODO: find a better way to do this
+    run `gem push`
+  end
 end
