@@ -1,10 +1,22 @@
+require 'yaml'
+
 class RubyGems < Yuyi::Roll
   dependencies :ruby
 
+  options(
+    :gemrc => {
+      :description => 'An object to be written to your .gemrc file',
+      :example => { :gem => '--no-document' },
+      :default => {}
+    }
+  )
+
   install do
+    write_to_file '~/.gemrc', options[:gemrc].to_yaml
   end
 
   uninstall do
+    delete_from_file '~/.gemrc', options[:gemrc].to_yaml
   end
 
   upgrade do
@@ -15,6 +27,3 @@ class RubyGems < Yuyi::Roll
     command? 'gem -v'
   end
 end
-
-# TODO:
-# .gemrc
