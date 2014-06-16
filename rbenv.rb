@@ -32,6 +32,8 @@ class Rbenv < Yuyi::Roll
   installed? do
     command?('rbenv -v') && run('brew list') =~ /rbenv/ && run('brew list') =~ /ruby-build/
   end
-end
 
-# TODO: post install: rbenv rehash
+  post_install do
+    run 'rbenv rehash'
+  end
+end
