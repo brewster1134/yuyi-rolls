@@ -2,8 +2,8 @@ require 'fileutils'
 
 class Xcode < Yuyi::Roll
   pre_install do
-    if !installed?
-      install
+    if !installed? && osx_version >= 10.9
+      run '/usr/bin/sudo /usr/bin/xcode-select --install'
     else
       say 'Make sure XCode command line tools are installed.', :type => :warn
       say ' * Install xcode through the App Store', :type => :warn
@@ -13,9 +13,6 @@ class Xcode < Yuyi::Roll
   end
 
   install do
-    if osx_version >= 10.9
-      run '/usr/bin/sudo /usr/bin/xcode-select --install'
-    end
   end
 
   uninstall do
