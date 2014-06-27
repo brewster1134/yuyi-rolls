@@ -1,5 +1,5 @@
 class Yuyi::RubyGemsRollModel < Yuyi::Roll
-  def self.inherited klass; super klass; end
+  def self.inherited klass; add_roll klass, caller; end
 
   def self.gem_name name
     @@name = name

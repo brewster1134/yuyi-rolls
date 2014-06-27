@@ -1,18 +1,16 @@
 class Yuyi::OhMyZsh < Yuyi::Roll
   dependencies :shell
 
-  options(
+  options({
     :zshrc => {
       :description => 'An array or multiline string of lines to add to your .zshrc file.',
-      :example => [ 'unsetopt append_history' ],
-      :default => []
+      :example => [ 'unsetopt append_history' ]
     },
     :plugins => {
       :description => 'An array of plugins to load.',
-      :example => [ 'git' ],
-      :default => []
+      :example => [ 'git' ]
     }
-  )
+  })
 
   install do
     run 'curl -L http://install.ohmyz.sh | sh'

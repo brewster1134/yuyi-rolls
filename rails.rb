@@ -1,13 +1,12 @@
 class Yuyi::Rails < Yuyi::Roll
   dependencies :ruby_gems
 
-  options(
+  options({
     :railsrc => {
       :description => 'A string to be written to your .railsrc file',
-      :example => '--skip-test-unit',
-      :default => ''
+      :example => '--skip-test-unit'
     }
-  )
+  })
 
   install do
     run 'gem install rails'

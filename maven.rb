@@ -1,11 +1,10 @@
 class Yuyi::Maven < Yuyi::HomebrewRollModel
-  options(
+  options({
     :opts => {
       :description => 'String to set to MAVEN_OPTS environment variable',
-      :example => '-Xmx512m',
-      :default => ''
+      :example => '-Xmx512m'
     }
-  )
+  })
 
   install do
     run 'brew install maven'

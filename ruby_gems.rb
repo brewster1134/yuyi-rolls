@@ -3,13 +3,12 @@ require 'yaml'
 class Yuyi::RubyGems < Yuyi::Roll
   dependencies :ruby
 
-  options(
+  options({
     :gemrc => {
       :description => 'An object to be written to your .gemrc file',
-      :example => { :gem => '--no-document' },
-      :default => {}
+      :example => { :gem => '--no-document' }
     }
-  )
+  })
 
   install do
     write_to_file '~/.gemrc', options[:gemrc].to_yaml

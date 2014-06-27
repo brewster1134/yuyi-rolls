@@ -1,13 +1,12 @@
 class Yuyi::Bash < Yuyi::Roll
   dependencies :shell
 
-  options(
+  options({
     :bashrc => {
       :description => 'An array or multiline string of lines to add to your .bashrc file.',
-      :example => 'set completion-ignore-case on',
-      :default => ''
+      :example => 'set completion-ignore-case on'
     }
-  )
+  })
 
   install do
     run 'brew install bash'

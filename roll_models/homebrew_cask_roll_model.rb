@@ -1,5 +1,5 @@
 class Yuyi::HomebrewCaskRollModel < Yuyi::Roll
-  def self.inherited klass; super klass; end
+  def self.inherited klass; add_roll klass, caller; end
 
   def self.homebrew_cask_name name
     @@name = name

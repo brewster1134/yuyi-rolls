@@ -1,11 +1,10 @@
 class Yuyi::Shell < Yuyi::Roll
-  options(
+  options({
     :commonrc => {
       :description => 'Array or multiline string of common shell settings',
-      :example => ["alias l='ls -lAGh'"],
-      :default => []
+      :example => ["alias l='ls -lAGh'"]
     }
-  )
+  })
 
   install do
     write_to_file '~/.commonrc', options[:commonrc]

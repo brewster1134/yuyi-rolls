@@ -1,13 +1,12 @@
 class Yuyi::Vagrant < Yuyi::Roll
   dependencies :homebrew_cask
 
-  options(
+  options({
     :version => {
       :description => 'Set an older version of vagrant to install (1.4.3, 1.2.7).  Leave blank for the latest version.',
-      :example => '1.4.3',
-      :default => ''
+      :example => '1.4.3'
     }
-  )
+  })
 
   install do
     dependencies :homebrew_cask_versions if version.empty?

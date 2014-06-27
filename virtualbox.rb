@@ -1,13 +1,12 @@
 class Yuyi::Virtualbox < Yuyi::Roll
   dependencies :homebrew_cask
 
-  options(
+  options({
     :version => {
       :description => 'The version of vitualbox to install (4.2.24, 4.3.6, 4.3.12).  Leave blank for the latest version.',
-      :example => '4.3.12',
-      :default => '',
+      :example => '4.3.12'
     }
-  )
+  })
 
   install do
     dependencies :homebrew_cask_versions if version.empty?

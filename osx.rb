@@ -1,11 +1,10 @@
 class Yuyi::Osx < Yuyi::Roll
-  options(
+  options({
     :commands => {
       :description => 'Array of commands to run on to setup OS X',
-      :example => ['defaults write com.apple.screencapture location ~/Downloads'],
-      :default => []
+      :example => ['defaults write com.apple.screencapture location ~/Downloads']
     }
-  )
+  })
 
   install do
     options[:commands].each do |command|
