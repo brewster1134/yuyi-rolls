@@ -1,24 +1,25 @@
-class Yuyi::HomebrewCaskRollModel < Yuyi::Roll
+class Yuyi::HomebrewRollModel < Yuyi::Roll
   def self.inherited klass; super klass; end
 
-  def self.homebrew_cask_name name
-    dependencies :homebrew_cask
+  def self.homebrew_name name
+    @@name = name
+  end
 
-    install do
-      run "brew cask install #{name}"
-    end
+  dependencies :homebrew
 
-    uninstall do
-      run "brew cask uninstall #{name}"
-    end
+  install do
+    run "brew install #{@@name}"
+  end
 
-    upgrade do
-      run "brew cask install #{name} --force"
-      run 'brew cask cleanup'
-    end
+  uninstall do
+    run "brew uninstall #{@@name}"
+  end
 
-    installed? do
-      run('brew cask list') =~ /#{name}/
-    end
+  upgrade do
+    run "brew upgrade #{@@name}"
+  end
+
+  installed? do
+    run('brew list') =~ /#{@@name}/
   end
 end

@@ -3,7 +3,7 @@ class Yuyi::Vagrant < Yuyi::Roll
 
   options(
     :version => {
-      :description => 'Set an older version to install. Supports `1.4.3` and `1.2.7`.  Leave blank for the latest version.',
+      :description => 'Set an older version of vagrant to install (1.4.3, 1.2.7).  Leave blank for the latest version.',
       :example => '1.4.3',
       :default => ''
     }
@@ -18,7 +18,10 @@ class Yuyi::Vagrant < Yuyi::Roll
     run "brew cask uninstall vagrant#{version}"
   end
 
-  upgrade { install }
+  upgrade do
+    run "brew cask install vagrant#{virtualbox} --force"
+    run 'brew cask cleanup'
+  end
 
   installed? do
     run('brew cask list') =~ /vagrant/

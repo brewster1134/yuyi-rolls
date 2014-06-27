@@ -9,19 +9,17 @@ class Yuyi::Rbenv < Yuyi::Roll
     run 'brew install rbenv ruby-build'
 
     # Add initialization to shell
-    write_to_file '~/.bash_profile', "# #{title}", 'eval "$(rbenv init -)"'
-    if on_the_menu? :zsh
-      write_to_file '~/.zshrc', "# #{title}", 'eval "$(rbenv init -)"'
+
+    if on_the_menu? :shell
+      write_to_file '~/.commonrc', commonrc
     end
   end
 
   uninstall do
     run 'brew uninstall rbenv ruby-build'
 
-    # Remove initialization to shell
-    delete_from_file '~/.bash_profile', "# #{title}", 'eval "$(rbenv init -)"'
-    if on_the_menu? :zsh
-      delete_from_file '~/.zshrc', "# #{title}", 'eval "$(rbenv init -)"'
+    if on_the_menu? :shell
+      delete_from_file '~/.commonrc', commonrc
     end
   end
 
@@ -35,5 +33,13 @@ class Yuyi::Rbenv < Yuyi::Roll
 
   post_install do
     run 'rbenv rehash'
+  end
+
+  def commonrc
+    [
+      '# RBENV',
+      'export RBENV_ROOT=/usr/local/var/rbenv',
+      'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi'
+    ]
   end
 end

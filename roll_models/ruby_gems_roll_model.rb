@@ -2,22 +2,24 @@ class Yuyi::RubyGemsRollModel < Yuyi::Roll
   def self.inherited klass; super klass; end
 
   def self.gem_name name
-    dependencies :ruby_gems
+    @@name = name
+  end
 
-    install do
-      run "gem install #{bundler}"
-    end
+  dependencies :ruby_gems
 
-    uninstall do
-      run "gem uninstall #{bundler}"
-    end
+  install do
+    run "gem install #{@@name}"
+  end
 
-    upgrade do
-      run "gem update #{bundler}"
-    end
+  uninstall do
+    run "gem uninstall #{@@name}"
+  end
 
-    installed? do
-      run("gem list #{bundler}") =~ /#{bundler}/
-    end
+  upgrade do
+    run "gem update #{@@name}"
+  end
+
+  installed? do
+    run("gem list #{@@name}") =~ /#{@@name}/
   end
 end
