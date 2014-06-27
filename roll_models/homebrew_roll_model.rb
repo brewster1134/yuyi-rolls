@@ -3,23 +3,23 @@ class Yuyi::HomebrewRollModel < Yuyi::Roll
 
   def self.homebrew_name name
     @@name = name
-  end
 
-  dependencies :homebrew
+    dependencies :homebrew
 
-  install do
-    run "brew install #{@@name}"
-  end
+    install do
+      run "brew install #{@@name}"
+    end
 
-  uninstall do
-    run "brew uninstall #{@@name}"
-  end
+    uninstall do
+      run "brew uninstall #{@@name}"
+    end
 
-  upgrade do
-    run "brew upgrade #{@@name}"
-  end
+    upgrade do
+      run "brew upgrade #{@@name}"
+    end
 
-  installed? do
-    run('brew list') =~ /#{@@name}/
+    installed? do
+      run('brew list') =~ /#{@@name}/
+    end
   end
 end

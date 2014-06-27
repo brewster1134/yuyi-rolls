@@ -3,24 +3,24 @@ class Yuyi::HomebrewCaskRollModel < Yuyi::Roll
 
   def self.homebrew_cask_name name
     @@name = name
-  end
 
-  dependencies :homebrew_cask
+    dependencies :homebrew_cask
 
-  install do
-    run "brew cask install #{@@name}"
-  end
+    install do
+      run "brew cask install #{@@name}"
+    end
 
-  uninstall do
-    run "brew cask uninstall #{@@name}"
-  end
+    uninstall do
+      run "brew cask uninstall #{@@name}"
+    end
 
-  upgrade do
-    run "brew cask install #{@@name} --force"
-    run 'brew cask cleanup'
-  end
+    upgrade do
+      run "brew cask install #{@@name} --force"
+      run 'brew cask cleanup'
+    end
 
-  installed? do
-    run('brew cask list') =~ /#{@@name}/
+    installed? do
+      run('brew cask list') =~ /#{@@name}/
+    end
   end
 end
