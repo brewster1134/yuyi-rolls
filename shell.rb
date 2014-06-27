@@ -1,7 +1,7 @@
 class Yuyi::Shell < Yuyi::Roll
   options(
     :commonrc => {
-      :description => 'Array of common shell settings',
+      :description => 'Array or multiline string of common shell settings',
       :example => ["alias l='ls -lAGh'"],
       :default => []
     }

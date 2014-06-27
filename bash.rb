@@ -3,7 +3,7 @@ class Yuyi::Bash < Yuyi::Roll
 
   options(
     :bashrc => {
-      :description => 'An array of lines to add to your .bashrc file.',
+      :description => 'An array or multiline string of lines to add to your .bashrc file.',
       :example => 'set completion-ignore-case on',
       :default => ''
     }

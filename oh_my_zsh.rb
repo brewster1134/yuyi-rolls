@@ -3,14 +3,23 @@ class Yuyi::OhMyZsh < Yuyi::Roll
 
   options(
     :zshrc => {
-      :description => 'An array of lines to add to your .zshrc file.',
+      :description => 'An array or multiline string of lines to add to your .zshrc file.',
       :example => [ 'unsetopt append_history' ],
-      :default => [],
+      :default => []
+    },
+    :plugins => {
+      :description => 'An array of plugins to load.',
+      :example => [ 'git' ],
+      :default => []
     }
   )
 
   install do
     run 'curl -L http://install.ohmyz.sh | sh'
+
+    # plugins
+    delete_from_file '~/.zshrc', 'plugins=(git)'
+    write_to_file '~/.zshrc', options[:plugins]
 
     write_to_file '~/.zshrc', options[:zshrc]
   end

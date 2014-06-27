@@ -6,7 +6,7 @@ class Yuyi::Ruby < Yuyi::Roll
   options(
     :versions => {
       :description => 'An array of ruby versions you would like to install (in order of oldest to newest by version).',
-      :example => [ '2.1.1' ],
+      :example => [ '2.1.2' ],
       :required => true
     }
   )
