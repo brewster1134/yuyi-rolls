@@ -18,7 +18,7 @@ class Yuyi::Vagrant < Yuyi::Roll
   end
 
   upgrade do
-    run "brew cask install vagrant#{virtualbox} --force"
+    run "brew cask install vagrant#{version} --force"
     run 'brew cask cleanup'
   end
 
