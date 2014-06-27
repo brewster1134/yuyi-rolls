@@ -1,4 +1,4 @@
-class Zsh < Yuyi::Roll
+class Yuyi::Zsh < Yuyi::Roll
   install do
     run 'curl -L http://install.ohmyz.sh | sh'
   end

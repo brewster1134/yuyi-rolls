@@ -1,4 +1,4 @@
-class Ruby < Yuyi::Roll
+class Yuyi::Ruby < Yuyi::Roll
   RBENV_RUBY_VERSION_REGEX = /^[\s*]{2}(.*)$/
 
   dependencies :rbenv

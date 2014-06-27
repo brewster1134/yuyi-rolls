@@ -1,4 +1,4 @@
-class HomebrewCask < Yuyi::Roll
+class Yuyi::HomebrewCask < Yuyi::Roll
   dependencies :homebrew
 
   install do

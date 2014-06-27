@@ -1,4 +1,4 @@
-class Vagrant < Yuyi::Roll
+class Yuyi::Vagrant < Yuyi::Roll
   dependencies :homebrew_cask
 
   options(

@@ -1,4 +1,4 @@
-class Rbenv < Yuyi::Roll
+class Yuyi::Rbenv < Yuyi::Roll
   dependencies :homebrew
 
   install do

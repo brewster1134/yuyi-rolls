@@ -1,17 +1,3 @@
-class Alfred < Yuyi::Roll
-  dependencies :homebrew_cask
-
-  install do
-    run 'brew cask install alfred'
-  end
-
-  uninstall do
-    run 'brew cask uninstall alfred'
-  end
-
-  upgrade { install }
-
-  installed? do
-    run('brew cask list') =~ /alfred/
-  end
+class Yuyi::Alfred < Yuyi::HomebrewCaskRollModel
+  homebrew_cask_name 'alfred'
 end

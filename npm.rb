@@ -1,4 +1,4 @@
-class Npm < Yuyi::Roll
+class Yuyi::Npm < Yuyi::Roll
   dependencies :node
 
   install do

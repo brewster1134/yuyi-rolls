@@ -1,8 +1,10 @@
 require 'fileutils'
 
-class Xcode < Yuyi::Roll
+class Yuyi::Xcode < Yuyi::Roll
   pre_install do
-    if !installed? && osx_version >= 10.9
+    next if installed?
+
+    if osx_version >= 10.9
       run '/usr/bin/sudo /usr/bin/xcode-select --install'
     else
       say 'Make sure XCode command line tools are installed.', :type => :warn
@@ -20,13 +22,17 @@ class Xcode < Yuyi::Roll
   end
 
   upgrade do
-    say 'Upgrading Xcode is not yet supported with Yuyi.  Please upgrade Xcode through the App Store.'
+    if installed?
+      say 'Xcode is already installed', :indent => 4, :type => :success
+    end
+
+    say 'Upgrading Xcode is not yet supported with Yuyi.  Please upgrade Xcode through the App Store.', :indent => 4, :type => :warn
   end
 
   installed? do
-    return false unless osx_version >= 10.9
+    return false if osx_version < 10.9
 
-    developer_dir = run '/usr/bin/xcode-select -print-path'
+    developer_dir = run('/usr/bin/xcode-select -print-path').chomp
     !developer_dir.empty? && File.exist?("#{developer_dir}/usr/bin/git")
   end
 end

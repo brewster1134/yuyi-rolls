@@ -1,19 +1,3 @@
-class Mongodb < Yuyi::Roll
-  dependencies :homebrew
-
-  install do
-    run 'brew install mongodb'
-  end
-
-  uninstall do
-    run 'brew uninstall mongodb'
-  end
-
-  upgrade do
-    run 'brew upgrade mongodb'
-  end
-
-  installed? do
-    run('brew list') =~ /mongodb/
-  end
+class Yuyi::Mongodb < Yuyi::HomebrewRollModel
+  homebrew_name 'mongodb'
 end

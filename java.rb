@@ -1,4 +1,4 @@
-class Java < Yuyi::Roll
+class Yuyi::Java < Yuyi::Roll
   dependencies :homebrew_cask
 
   options(

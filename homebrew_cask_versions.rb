@@ -1,4 +1,4 @@
-class HomebrewCaskVersions < Yuyi::Roll
+class Yuyi::HomebrewCaskVersions < Yuyi::Roll
   dependencies :homebrew
 
   install do

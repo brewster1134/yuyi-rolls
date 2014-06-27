@@ -1,6 +1,6 @@
 require 'yaml'
 
-class RubyGems < Yuyi::Roll
+class Yuyi::RubyGems < Yuyi::Roll
   dependencies :ruby
 
   options(

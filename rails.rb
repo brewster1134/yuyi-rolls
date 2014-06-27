@@ -1,4 +1,4 @@
-class Rails < Yuyi::Roll
+class Yuyi::Rails < Yuyi::Roll
   dependencies :ruby_gems
 
   options(

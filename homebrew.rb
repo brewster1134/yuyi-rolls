@@ -1,4 +1,4 @@
-class Homebrew < Yuyi::Roll
+class Yuyi::Homebrew < Yuyi::Roll
   dependencies :xcode
 
   install do
