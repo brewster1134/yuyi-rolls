@@ -11,14 +11,13 @@ class Yuyi::Bash < Yuyi::Roll
   install do
     run 'brew install bash'
 
-    write_to_file '/etc/shells', '/usr/local/bin/bash'
     write_to_file '~/.bashrc', options[:bashrc]
   end
 
   uninstall do
     run 'brew uninstall bash'
 
-    delete_from_file '/etc/shells', '/usr/local/bin/bash'
+    say 'To uninstall bash completely, you will need to delete the line `/usr/local/bin/bash` from the file `/etc/shells`', :type => :warn
     delete_from_file '~/.bashrc', options[:bashrc]
   end
 
@@ -28,5 +27,9 @@ class Yuyi::Bash < Yuyi::Roll
 
   installed? do
     run('brew list') =~ /bash/
+  end
+
+  post_install do
+    say 'You will need to add the line `/usr/local/bin/bash` to the file `/etc/shells`', :type => :warn
   end
 end
