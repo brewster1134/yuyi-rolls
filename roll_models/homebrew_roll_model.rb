@@ -1,4 +1,3 @@
-puts 'Yuyi::HomebrewRollModel'
 class Yuyi::HomebrewRollModel < Yuyi::Roll
   def self.inherited klass; add_roll klass, caller; end
 

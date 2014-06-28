@@ -1,4 +1,3 @@
-puts 'Yuyi::RubyGemsRollModel'
 class Yuyi::RubyGemsRollModel < Yuyi::Roll
   def self.inherited klass; add_roll klass, caller; end
 
