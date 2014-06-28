@@ -13,7 +13,7 @@ class Yuyi::SublimeText < Yuyi::Roll
     if options[:version] == 2
       run 'brew cask install sublime-text'
     else
-      run 'brew cask install sublime-text-3'
+      run 'brew cask install sublime-text3'
     end
   end
 
@@ -21,7 +21,7 @@ class Yuyi::SublimeText < Yuyi::Roll
     if options[:version] == 2
       run 'brew cask uninstall sublime-text'
     else
-      run 'brew cask uninstall sublime-text-3'
+      run 'brew cask uninstall sublime-text3'
     end
   end
 

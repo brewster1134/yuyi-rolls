@@ -13,6 +13,8 @@ class Yuyi::Rbenv < Yuyi::Roll
     if on_the_menu? :shell
       write_to_file '~/.commonrc', commonrc
     end
+
+    run 'rbenv rehash'
   end
 
   uninstall do

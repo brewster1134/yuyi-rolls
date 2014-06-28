@@ -1,5 +1,5 @@
 class Yuyi::Virtualbox < Yuyi::Roll
-  dependencies :homebrew_cask
+  dependencies options[:version] ? :homebrew_cask_versions : :homebrew_cask
 
   options({
     :version => {
@@ -9,7 +9,6 @@ class Yuyi::Virtualbox < Yuyi::Roll
   })
 
   install do
-    dependencies :homebrew_cask_versions if version.empty?
     run "brew cask install virtualbox#{version}"
   end
 
@@ -18,7 +17,7 @@ class Yuyi::Virtualbox < Yuyi::Roll
   end
 
   upgrade do
-    run "brew cask install virtualbox#{virtualbox} --force"
+    run "brew cask install virtualbox#{version} --force"
     run 'brew cask cleanup'
   end
 
@@ -27,13 +26,13 @@ class Yuyi::Virtualbox < Yuyi::Roll
   end
 
   def version
-    ver = options[:version].scan(/[0-9]/).join
+    return '' unless options[:version]
 
+    ver = options[:version].to_s.scan(/[0-9]/).join
     case ver
     when '4224' then '422492790'
     when '436' then '43691406'
     when '4312' then '431293733'
-    else ''
     end
   end
 end

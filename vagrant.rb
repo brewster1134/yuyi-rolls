@@ -1,5 +1,6 @@
 class Yuyi::Vagrant < Yuyi::Roll
   dependencies :homebrew_cask
+  dependencies :homebrew_cask_versions if options[:version]
 
   options({
     :version => {
@@ -9,7 +10,6 @@ class Yuyi::Vagrant < Yuyi::Roll
   })
 
   install do
-    dependencies :homebrew_cask_versions if version.empty?
     run "brew cask install vagrant#{version}"
   end
 
@@ -27,6 +27,6 @@ class Yuyi::Vagrant < Yuyi::Roll
   end
 
   def version
-    options[:version].scan(/[0-9]/).join
+    (options[:version] || '').scan(/[0-9]/).join
   end
 end

@@ -17,6 +17,7 @@ class Yuyi::Ruby < Yuyi::Roll
     end
 
     # set the last version to be the global version
+    run 'rbenv rehash'
     run "rbenv global #{versions.last}"
   end
 
