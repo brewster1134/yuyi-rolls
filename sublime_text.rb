@@ -15,6 +15,10 @@ class Yuyi::SublimeText < Yuyi::Roll
     else
       run 'brew cask install sublime-text3'
     end
+
+    if on_the_menu? :shell
+      write_to_file '~/.commonrc', commonrc
+    end
   end
 
   uninstall do
@@ -23,6 +27,8 @@ class Yuyi::SublimeText < Yuyi::Roll
     else
       run 'brew cask uninstall sublime-text3'
     end
+
+    delete_from_file '~/.commonrc', commonrc
   end
 
   upgrade { install }
@@ -33,5 +39,12 @@ class Yuyi::SublimeText < Yuyi::Roll
     else
       run('brew cask list') =~ /sublime-text/
     end
+  end
+
+  def commonrc
+    [
+      '# EDITOR: Sublime Text',
+      "export EDITOR='subl -w'"
+    ]
   end
 end

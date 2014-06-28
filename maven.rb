@@ -37,8 +37,7 @@ class Yuyi::Maven < Yuyi::HomebrewRollModel
   def opts
     [
       '# MAVEN',
-      "export MAVEN_OPTS='#{options[:opts]}'",
-      "\n"
+      "export MAVEN_OPTS='#{options[:opts]}'"
     ]
   end
 end

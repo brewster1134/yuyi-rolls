@@ -38,8 +38,7 @@ class Yuyi::Java < Yuyi::Roll
   def opts
     [
       '# JAVA',
-      'export JAVA_HOME=$(/usr/libexec/java_home)',
-      "\n"
+      'export JAVA_HOME=$(/usr/libexec/java_home)'
     ]
   end
 end
