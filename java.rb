@@ -3,13 +3,14 @@ class Yuyi::Java < Yuyi::Roll
 
   options({
     :version => {
-      :description => 'Choose between Java 6 or 7',
-      :example => 7,
-      :default => 7
+      :description => 'Choose an older version of java (6, 7).  Leave blank for the latest version.',
+      :example => 7
     }
   })
 
   install do
+    dependencies :homebrew_cask_versions if options[:version]
+
     run "brew cask install java#{options[:version]}"
 
     if on_the_menu? :shell
