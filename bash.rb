@@ -31,6 +31,6 @@ class Yuyi::Bash < Yuyi::Roll
 
   post_install do
     say title, :type => :success
-    say 'Edit `/usr/local/bin/bash` and add the line `/etc/shells`', :type => :warn, :indent => 2
+    say 'Edit `/etc/shells` and add the line `/usr/local/bin/bash`', :type => :warn, :indent => 2
   end
 end

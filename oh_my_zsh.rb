@@ -1,11 +1,7 @@
 class Yuyi::OhMyZsh < Yuyi::Roll
-  dependencies :shell
+  dependencies :shell, :zsh
 
   options({
-    :zshrc => {
-      :description => 'An array or multiline string of lines to add to your .zshrc file.',
-      :example => [ 'unsetopt append_history' ]
-    },
     :plugins => {
       :description => 'An array of plugins to load.',
       :example => [ 'git' ]
@@ -18,8 +14,6 @@ class Yuyi::OhMyZsh < Yuyi::Roll
     # plugins
     delete_from_file '~/.zshrc', 'plugins=(git)'
     write_to_file '~/.zshrc', options[:plugins]
-
-    write_to_file '~/.zshrc', options[:zshrc]
   end
 
   uninstall do
@@ -33,6 +27,6 @@ class Yuyi::OhMyZsh < Yuyi::Roll
   end
 
   installed? do
-    File.read('/etc/shells').include? '/bin/zsh'
+    File.exists?(File.expand_path('~/.oh-my-zsh'))
   end
 end
