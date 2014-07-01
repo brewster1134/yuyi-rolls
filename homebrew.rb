@@ -6,19 +6,20 @@ class Yuyi::Homebrew < Yuyi::Roll
   end
 
   uninstall do
-    run `cd \`brew --prefix\``
-    run `git checkout master`
-    run `git ls-files -z | pbcopy`
-    run `rm -rf Cellar`
-    run `bin/brew prune`
-    run `pbpaste | xargs -0 rm`
-    run `rm -r Library/Homebrew Library/Aliases Library/Formula Library/Contributions`
-    run `test -d Library/LinkedKegs && rm -r Library/LinkedKegs`
-    run `rmdir -p bin Library share/man/man1 2> /dev/null`
-    run `rm -rf .git`
-    run `rm -rf ~/Library/Caches/Homebrew`
-    run `rm -rf ~/Library/Logs/Homebrew`
-    run `rm -rf /Library/Caches/Homebrew: No such file or directory`
+    brew_prefix = run 'brew --prefix'
+    run "cd #{brew_prefix}"
+    run 'git checkout master'
+    run 'git ls-files -z | pbcopy'
+    run 'rm -rf Cellar'
+    run 'bin/brew prune'
+    run 'pbpaste | xargs -0 rm'
+    run 'rm -r Library/Homebrew Library/Aliases Library/Formula Library/Contributions'
+    run 'test -d Library/LinkedKegs && rm -r Library/LinkedKegs'
+    run 'rmdir -p bin Library share/man/man1 2> /dev/null'
+    run 'rm -rf .git'
+    run 'rm -rf ~/Library/Caches/Homebrew'
+    run 'rm -rf ~/Library/Logs/Homebrew'
+    run 'rm -rf /Library/Caches/Homebrew: No such file or directory'
   end
 
   upgrade do
