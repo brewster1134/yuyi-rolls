@@ -19,6 +19,9 @@ class Yuyi::RubyGems < Yuyi::Roll
   end
 
   upgrade do
+    run 'rbenv versions'
+    run 'rbenv version'
+    run 'ruby -v'
     run 'gem update --system'
   end
 

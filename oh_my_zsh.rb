@@ -19,7 +19,7 @@ class Yuyi::OhMyZsh < Yuyi::Roll
   uninstall do
     run 'uninstall_oh_my_zsh'
 
-    delete_from_file '~/.zshrc', options[:zshrc]
+    delete_from_file '~/.zshrc', options[:plugins]
   end
 
   upgrade do
