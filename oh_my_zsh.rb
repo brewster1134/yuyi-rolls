@@ -1,5 +1,5 @@
 class Yuyi::OhMyZsh < Yuyi::Roll
-  dependencies :shell, :zsh
+  dependencies :zsh
 
   options({
     :plugins => {
@@ -18,7 +18,6 @@ class Yuyi::OhMyZsh < Yuyi::Roll
 
   uninstall do
     run 'uninstall_oh_my_zsh'
-
     delete_from_file '~/.zshrc', options[:plugins]
   end
 

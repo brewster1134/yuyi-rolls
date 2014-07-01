@@ -1,11 +1,12 @@
 class Yuyi::Zsh < Yuyi::HomebrewRollModel
+  dependencies :shell
   homebrew_name 'zsh'
 
   options({
     :zshrc => {
       :description => 'An array or multiline string of lines to add to your .zshrc file.',
       :example => [ 'unsetopt append_history' ]
-    },
+    }
   })
 
   install do
