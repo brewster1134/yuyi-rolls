@@ -30,8 +30,7 @@ class Yuyi::RubyGems < Yuyi::Roll
   end
 
   post_install do
-    # Prompts to enter rubygems credentials, but will fail because there is no gem to publish
-    # TODO: find a better way to do this
-    run 'gem push'
+    say 'If you publish gems to rubygems, open a new terminal window and run `gem push` to enter your credentials.', :type => :warn, :indent => 2
+    ask 'Press any key to continue when you are done, or if you do not have/want a rubygems account.', :type => :warn
   end
 end

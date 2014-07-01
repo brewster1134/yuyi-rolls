@@ -4,13 +4,20 @@ class Yuyi::Xcode < Yuyi::Roll
   pre_install do
     next if installed?
 
-    if osx_version >= 10.9
+    unless xcode_installed?
+      say 'Open the App Store and install Xcode', :type => :warn, :indent => 2
+    end
+
+    say 'Make sure you open Xcode an accept the terms & conditions'
+    ask 'Press any key to continue once Xcode is installed and the terms & conditions have been accepted.', :type => :warn
+
+    if !xcode_command_line_tools_installed? && osx_version >= 10.9
       run '/usr/bin/sudo /usr/bin/xcode-select --install'
     else
-      say 'Make sure XCode command line tools are installed.', :type => :warn
-      say ' * Install xcode through the App Store', :type => :warn
-      say ' * Install the command line tools through XCode\'s Preferences > Downloads', :type => :warn
+      say 'Make sure Xcode command line tools are installed.', :type => :warn, :indent => 2
+      say 'Install the command line tools through Xcode\'s Preferences > Downloads', :type => :warn, :indent => 4
     end
+
     ask 'Press any key to continue once the xcode command line tools are installed', :type => :warn
   end
 
@@ -32,6 +39,14 @@ class Yuyi::Xcode < Yuyi::Roll
   installed? do
     return false if osx_version < 10.9
 
+    xcode_installed? && xcode_command_line_tools_installed?
+  end
+
+  def xcode_installed?
+    File.exist?('/Applications/Xcode.app')
+  end
+
+  def xcode_command_line_tools_installed?
     developer_dir = run('/usr/bin/xcode-select -print-path').chomp
     !developer_dir.empty? && File.exist?("#{developer_dir}/usr/bin/git")
   end

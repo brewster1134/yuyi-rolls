@@ -30,7 +30,7 @@ class Yuyi::Bash < Yuyi::Roll
   end
 
   post_install do
-    say title, :type => :success
     say 'Edit `/etc/shells` and add the line `/usr/local/bin/bash`', :type => :warn, :indent => 2
+    ask 'Press any key to continue once the the line has been successfully added & the file saved.', :type => :warn
   end
 end

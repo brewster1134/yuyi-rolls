@@ -24,13 +24,11 @@ class Yuyi::Zsh < Yuyi::HomebrewRollModel
   end
 
   post_install do
-    say title, :type => :success
-
     if options[:uninstall]
       say 'Edit `/etc/shells` and remove the line `/bin/zsh`', :type => :warn, :indent => 2
     else
       say 'Edit `/etc/shells` and add the line `/bin/zsh`', :type => :warn, :indent => 2
-      ask 'Press any key to continue once the the line has been successfully added & the file saved.', :type => :warn
+      ask 'Press any key to continue once the line has been successfully added & the file saved.', :type => :warn
 
       say 'Switching to zsh', :type => :warn, :indent => 2
       run 'chsh -s /bin/zsh'

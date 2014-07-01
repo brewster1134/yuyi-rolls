@@ -14,6 +14,7 @@ class Yuyi::Rbenv < Yuyi::Roll
       write_to_file '~/.commonrc', commonrc
     end
 
+    run 'export RBENV_ROOT=/usr/local/var/rbenv'
     run 'eval "$(rbenv init -)"'
     run 'rbenv rehash'
   end
