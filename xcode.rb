@@ -8,7 +8,7 @@ class Yuyi::Xcode < Yuyi::Roll
       say 'Open the App Store and install Xcode', :type => :warn, :indent => 2
     end
 
-    say 'Make sure you open Xcode an accept the terms & conditions'
+    say 'Make sure you open Xcode an accept the terms & conditions', :type => :warn, :indent => 2
     ask 'Press any key to continue once Xcode is installed and the terms & conditions have been accepted.', :type => :warn
 
     if !xcode_command_line_tools_installed? && osx_version >= 10.9
@@ -31,9 +31,9 @@ class Yuyi::Xcode < Yuyi::Roll
   upgrade do
     if installed?
       say 'Xcode is already installed', :indent => 4, :type => :success
+    else
+      say 'Upgrading Xcode is not yet supported with Yuyi.  Please upgrade Xcode through the App Store.', :indent => 4, :type => :warn
     end
-
-    say 'Upgrading Xcode is not yet supported with Yuyi.  Please upgrade Xcode through the App Store.', :indent => 4, :type => :warn
   end
 
   installed? do
