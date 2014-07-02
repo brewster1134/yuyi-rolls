@@ -30,3 +30,6 @@ class Yuyi::Vagrant < Yuyi::Roll
     (options[:version] || '').scan(/[0-9]/).join
   end
 end
+
+
+# TODO: plugins
