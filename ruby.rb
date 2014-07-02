@@ -1,5 +1,5 @@
 class Yuyi::Ruby < Yuyi::Roll
-  RBENV_RUBY_VERSION_REGEX = /^[\s*]{2}(.*)$/
+  RBENV_RUBY_VERSION_REGEX = /^.{2}([^\s]+)/
 
   dependencies :rbenv
 
