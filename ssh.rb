@@ -7,7 +7,7 @@ class Yuyi::Ssh < Yuyi::Roll
     FileUtils.rm_rf File.expand_path '~/.ssh'
   end
 
-  installed?
+  installed? do
     Dir.exists?(File.expand_path('~/.ssh')) && File.exists?(File.expand_path('~/.ssh/id_rsa'))
   end
 
