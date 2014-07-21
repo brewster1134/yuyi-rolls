@@ -1,5 +1,5 @@
 class Yuyi::Ruby < Yuyi::Roll
-  @rbenv_ruby_version_regex = /^.{2}([^\s]+)/
+  @@rbenv_ruby_version_regex = /^.{2}([^\s]+)/
 
   dependencies :rbenv
 
@@ -12,6 +12,7 @@ class Yuyi::Ruby < Yuyi::Roll
   })
 
   install do
+    puts 'install', versions.inspect
     versions.each do |v|
       run "rbenv install #{v}" unless installed_versions.include? v
     end
@@ -42,11 +43,11 @@ class Yuyi::Ruby < Yuyi::Roll
   # Roll methods
   #
   def available_versions
-    @available_versions ||= run('rbenv install -l').scan(@rbenv_ruby_version_regex).flatten
+    @available_versions ||= run('rbenv install -l').scan(@@rbenv_ruby_version_regex).flatten
   end
 
   def installed_versions
-    @installed_versions ||= run('rbenv versions').scan(@rbenv_ruby_version_regex).flatten
+    @installed_versions ||= run('rbenv versions').scan(@@rbenv_ruby_version_regex).flatten
   end
 
   def versions
