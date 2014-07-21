@@ -38,6 +38,6 @@ class Yuyi::Shell < Yuyi::Roll
   end
 
   def commonrc
-    'source ~/.commonrc'
+    'source $HOME/.commonrc'
   end
 end

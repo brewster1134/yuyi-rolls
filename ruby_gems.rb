@@ -6,7 +6,8 @@ class Yuyi::RubyGems < Yuyi::Roll
   options({
     :gemrc => {
       :description => 'An object to be written to your .gemrc file',
-      :example => { :gem => '--no-document' }
+      :example => { :gem => '--no-document' },
+      :default => {}
     }
   })
 

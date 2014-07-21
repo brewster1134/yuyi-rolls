@@ -13,12 +13,12 @@ class Yuyi::OhMyZsh < Yuyi::Roll
 
     # plugins
     delete_from_file '~/.zshrc', 'plugins=(git)'
-    write_to_file '~/.zshrc', options[:plugins]
+    write_to_file '~/.zshrc', "plugins=(#{options[:plugins].join(' ')})"
   end
 
   uninstall do
     run 'uninstall_oh_my_zsh'
-    delete_from_file '~/.zshrc', options[:plugins]
+    delete_from_file '~/.zshrc', "plugins=(#{options[:plugins].join(' ')})"
   end
 
   upgrade do
