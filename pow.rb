@@ -2,7 +2,7 @@ class Yuyi::Pow < Yuyi::Roll
   options({
     :powconfig => {
       :description => 'An array or multiline string of lines to add to your .powconfig file.',
-      :example => ['export PATH=/usr/local/var/rbenv/shims:$PATH']
+      :example => ['export FOO=bar']
     }
   })
 
