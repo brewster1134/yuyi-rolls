@@ -12,7 +12,6 @@ class Yuyi::Ruby < Yuyi::Roll
   })
 
   install do
-    puts 'install', versions.inspect
     versions.each do |v|
       run "rbenv install #{v}" unless installed_versions.include? v
     end
