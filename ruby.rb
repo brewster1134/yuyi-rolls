@@ -1,7 +1,7 @@
 class Yuyi::Ruby < Yuyi::Roll
   @@rbenv_ruby_version_regex = /^.{2}([^\s]+)/
 
-  dependencies :rbenv
+  dependencies :rbenv, :openssl
 
   options({
     :versions => {
@@ -12,6 +12,9 @@ class Yuyi::Ruby < Yuyi::Roll
   })
 
   install do
+    # insure openssl is linked
+    run 'brew link openssl --force'
+
     versions.each do |v|
       run "rbenv install #{v}" unless installed_versions.include? v
     end

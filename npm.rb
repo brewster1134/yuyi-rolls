@@ -3,7 +3,7 @@ class Yuyi::Npm < Yuyi::Roll
 
   install do
     unless command? 'npm -v'
-      run 'curl https://npmjs.org/install.sh | sh'
+      run 'curl -L https://npmjs.org/install.sh | sh'
     end
   end
 
