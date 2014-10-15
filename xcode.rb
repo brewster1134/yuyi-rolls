@@ -39,7 +39,7 @@ class Yuyi::Xcode < Yuyi::Roll
   installed? do
     return false if osx_version < 10.9
 
-    xcode_installed? && xcode_command_line_tools_installed?
+    xcode_installed? && xcode_command_line_tools_installed? && xcode_license_accepted?
   end
 
   def xcode_installed?
@@ -47,6 +47,11 @@ class Yuyi::Xcode < Yuyi::Roll
   end
 
   def xcode_command_line_tools_installed?
+    developer_dir = run('/usr/bin/xcode-select -print-path').chomp
+    !developer_dir.empty? && File.exist?("#{developer_dir}/usr/bin/git")
+  end
+
+  def xcode_license_accepted?
     developer_dir = run('/usr/bin/xcode-select -print-path').chomp
     !developer_dir.empty? && File.exist?("#{developer_dir}/usr/bin/git")
   end

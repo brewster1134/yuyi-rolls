@@ -6,12 +6,13 @@ class Yuyi::Osx < Yuyi::Roll
     }
   })
 
-  install do
+  post_install do
     options[:commands].each do |command|
       run command
     end
   end
 
+  install {}
   uninstall {}
   upgrade {}
   installed? { false }
