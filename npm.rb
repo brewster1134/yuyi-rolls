@@ -12,7 +12,7 @@ class Yuyi::Npm < Yuyi::Roll
   end
 
   upgrade do
-    run 'npm update npm -g'
+    run 'npm install -g npm@latest'
   end
 
   installed? do
