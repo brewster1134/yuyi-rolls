@@ -12,7 +12,7 @@ class Yuyi::HomebrewCask < Yuyi::Roll
   end
 
   upgrade do
-    say 'Upgraded via Homebrew', :type => :success, :indent => 4
+    run 'brew upgrade brew-cask && brew cask cleanup'
   end
 
   installed? do

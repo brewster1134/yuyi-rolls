@@ -26,7 +26,7 @@ class Yuyi::Homebrew < Yuyi::Roll
     pwd = Dir.pwd
     Dir.chdir '/usr/local/Library/Homebrew'
     run 'git pull origin master -q'
-    run 'brew update'
+    run 'brew update && brew cleanup'
     Dir.chdir pwd
   end
 
