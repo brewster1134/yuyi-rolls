@@ -3,7 +3,6 @@ class Yuyi::Homebrew < Yuyi::Roll
 
   install do
     run 'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
-
   end
 
   uninstall do
