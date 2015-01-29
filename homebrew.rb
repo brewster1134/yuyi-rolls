@@ -2,7 +2,8 @@ class Yuyi::Homebrew < Yuyi::Roll
   dependencies :xcode
 
   install do
-    run 'ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"'
+    run 'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
+
   end
 
   uninstall do
