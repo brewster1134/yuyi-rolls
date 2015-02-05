@@ -11,7 +11,7 @@ class Yuyi::Xcode < Yuyi::Roll
     say 'Make sure you open Xcode an accept the terms & conditions', :type => :warn, :indent => 2
     ask 'Press any key to continue once Xcode is installed and the terms & conditions have been accepted.', :type => :warn
 
-    if !xcode_command_line_tools_installed? && osx_version >= 10.9
+    if !xcode_command_line_tools_installed?
       run '/usr/bin/sudo /usr/bin/xcode-select --install'
     else
       say 'Make sure Xcode command line tools are installed.', :type => :warn, :indent => 2
@@ -37,9 +37,7 @@ class Yuyi::Xcode < Yuyi::Roll
   end
 
   installed? do
-    return false if osx_version < 10.9
-
-    xcode_installed? && xcode_command_line_tools_installed? && xcode_license_accepted?
+    xcode_installed? && xcode_command_line_tools_installed?
   end
 
   def xcode_installed?
@@ -48,11 +46,7 @@ class Yuyi::Xcode < Yuyi::Roll
 
   def xcode_command_line_tools_installed?
     developer_dir = run('/usr/bin/xcode-select -print-path').chomp
-    !developer_dir.empty? && File.exist?("#{developer_dir}/usr/bin/git")
-  end
-
-  def xcode_license_accepted?
-    developer_dir = run('/usr/bin/xcode-select -print-path').chomp
+    puts 'xcode_command_line_tools_installed?', developer_dir, '--------'
     !developer_dir.empty? && File.exist?("#{developer_dir}/usr/bin/git")
   end
 end
