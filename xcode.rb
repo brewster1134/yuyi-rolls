@@ -46,7 +46,6 @@ class Yuyi::Xcode < Yuyi::Roll
 
   def xcode_command_line_tools_installed?
     developer_dir = run('/usr/bin/xcode-select -print-path').chomp
-    puts 'xcode_command_line_tools_installed?', developer_dir, '--------'
     !developer_dir.empty? && File.exist?("#{developer_dir}/usr/bin/git")
   end
 end

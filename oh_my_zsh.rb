@@ -11,14 +11,20 @@ class Yuyi::OhMyZsh < Yuyi::Roll
   install do
     run 'curl -L http://install.ohmyz.sh | sh'
 
-    # plugins
-    delete_from_file '~/.zshrc', 'plugins=(git)'
-    write_to_file '~/.zshrc', "plugins=(#{options[:plugins].join(' ')})"
+    # set plugins
+    if options[:plugins]
+      delete_from_file '~/.zshrc', 'plugins=(git)'
+      write_to_file '~/.zshrc', "plugins=(#{options[:plugins].join(' ')})"
+    end
   end
 
   uninstall do
     run 'uninstall_oh_my_zsh'
-    delete_from_file '~/.zshrc', "plugins=(#{options[:plugins].join(' ')})"
+
+    # remove plugins
+    if options[:plugins]
+      delete_from_file '~/.zshrc', "plugins=(#{options[:plugins].join(' ')})"
+    end
   end
 
   upgrade do
