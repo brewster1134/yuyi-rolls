@@ -1,5 +1,5 @@
 class Yuyi::Homebrew < Yuyi::Roll
-  dependencies :xcode
+  dependencies :xcode_command_line_tools
 
   install do
     run 'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'

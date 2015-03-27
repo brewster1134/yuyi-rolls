@@ -1,5 +1,5 @@
 class Yuyi::Java < Yuyi::Roll
-  dependencies :homebrew_cask
+  dependencies :homebrew_cask, :homebrew_cask_versions
 
   options({
     :version => {
@@ -9,8 +9,6 @@ class Yuyi::Java < Yuyi::Roll
   })
 
   install do
-    dependencies :homebrew_cask_versions if options[:version]
-
     run "brew cask install java#{options[:version]}"
 
     if on_the_menu? :shell
