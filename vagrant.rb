@@ -1,6 +1,5 @@
 class Yuyi::Vagrant < Yuyi::Roll
-  dependencies :homebrew_cask
-  dependencies :homebrew_cask_versions if options[:version]
+  dependencies :homebrew_cask, :homebrew_cask_versions
 
   options({
     :version => {
