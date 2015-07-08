@@ -1,5 +1,5 @@
 class Yuyi::SublimeText < Yuyi::Roll
-  dependencies options[:version] == 2 ? :homebrew_cask : :homebrew_cask_versions
+  dependencies :homebrew_cask, :homebrew_cask_versions
 
   options({
     :version => {
