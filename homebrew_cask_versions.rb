@@ -1,5 +1,5 @@
 class Yuyi::HomebrewCaskVersions < Yuyi::Roll
-  dependencies :homebrew
+  dependencies :homebrew_cask
 
   install do
     run 'brew tap caskroom/versions'
