@@ -1,5 +1,5 @@
 class Yuyi::OhMyZsh < Yuyi::Roll
-  dependencies :zsh
+  dependencies :zsh, :git
 
   options({
     :plugins => {
@@ -28,7 +28,7 @@ class Yuyi::OhMyZsh < Yuyi::Roll
   end
 
   upgrade do
-    run 'upgrade_oh_my_zsh'
+    run '(cd ~/.oh-my-zsh && git reset --hard && upgrade_oh_my_zsh)'
   end
 
   installed? do

@@ -1,4 +1,4 @@
-class Yuyi::Maven
+class Yuyi::Maven < Yuyi::Roll
   dependencies :homebrew_cask_versions
 
   options({
