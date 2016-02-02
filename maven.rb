@@ -14,7 +14,11 @@ class Yuyi::Maven < Yuyi::Roll
   })
 
   install do
-    run "brew install maven#{version}"
+    if options[:version]
+      run "brew install homebrew/versions/maven#{version}"
+    else
+      run "brew install maven"
+    end
 
     if on_the_menu? :shell
       write_to_file '~/.commonrc', opts
@@ -22,19 +26,18 @@ class Yuyi::Maven < Yuyi::Roll
   end
 
   uninstall do
-    run "brew uninstall maven#{version}"
+    if options[:version]
+      run "brew uninstall homebrew/versions/maven#{version}"
+    else
+      run "brew uninstall maven"
+    end
 
     if on_the_menu? :shell
       delete_from_file '~/.commonrc', opts
     end
   end
 
-  upgrade do
-    run "brew upgrade maven#{version}"
-
-    if on_the_menu? :shell
-      write_to_file '~/.commonrc', opts
-    end
+  upgrade { install }
   end
 
   installed? do
