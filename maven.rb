@@ -8,7 +8,8 @@ class Yuyi::Maven < Yuyi::Roll
     },
     :version => {
       :description => 'Version of Maven to install',
-      :example => '3.1'
+      :example => '3.1',
+      :default => ''
     }
   })
 
