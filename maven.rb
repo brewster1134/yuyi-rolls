@@ -38,7 +38,6 @@ class Yuyi::Maven < Yuyi::Roll
   end
 
   upgrade { install }
-  end
 
   installed? do
     run('brew list') =~ /maven#{version}/
